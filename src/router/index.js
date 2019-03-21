@@ -52,41 +52,41 @@ export const constantRouterMap = [
   },
 
   {
-    path: '/example',
+    path: '/monitoring_face',
     component: Layout,
     redirect: '/example/table',
     name: 'Example',
     meta: { title: '人脸检测', icon: 'example' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
+        path: 'age',
+        name: 'age',
+        component: () => import('@/views/monitoring_age/index'),
         meta: { title: '年龄检测', icon: 'table' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
+        path: 'gender',
+        name: 'gender',
+        component: () => import('@/views/monitoring_gender/index'),
         meta: { title: '性别检测', icon: 'tree' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
+        path: 'emotion',
+        name: 'emotion',
+        component: () => import('@/views/monitoring_emotion/index'),
         meta: { title: '情绪检测', icon: 'tree' }
       }
     ]
   },
 
   {
-    path: '/form',
+    path: '/body',
     component: Layout,
     children: [
       {
         path: 'index',
         name: 'Form',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/monitoring_body/index'),
         meta: { title: '人体追踪', icon: 'form' }
       }
     ]
@@ -104,13 +104,13 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/form',
+    path: '/table',
     component: Layout,
     children: [
       {
         path: 'index',
         name: 'Form',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/table/index'),
         meta: { title: '数据统计', icon: 'form' }
       }
     ]

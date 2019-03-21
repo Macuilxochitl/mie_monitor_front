@@ -3,6 +3,10 @@
     <el-row>
       <el-col :offset="3" :span="18"><img style="max-width:100%;" :src="img_url"></el-col>
     </el-row>
+    <el-col v-for="face in faces" :span="8" :key="face.id">
+      <img :src="face.face_img_url" height="100" width="100">
+      年龄：{{ face.attributes.age.value }}
+    </el-col>
   </div>
 </template>
 
@@ -38,6 +42,11 @@ export default {
       get() {
         return this.$store.state.app.body_detect_result
       }
+    },
+    faces: {
+      get() {
+        return this.$store.state.app.faces
+      }
     }
   },
   created() {
@@ -45,7 +54,7 @@ export default {
   },
   methods: {
     fn() {
-      this.$store.dispatch('GetLatestImg')
+      this.$store.dispatch('GetLatestFaceDetectImg')
     }
   }
 }

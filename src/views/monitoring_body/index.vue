@@ -26,7 +26,7 @@ export default {
   computed: {
     img_url: {
       get() {
-        return this.$store.state.app.img_url
+        return this.$store.state.app.body_detect_img_url
       }
     },
     face_detect_result: {
@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     fn() {
-      this.$store.dispatch('GetLatestImg')
+      this.$store.dispatch('GetLatestBodyDetectImg')
     }
   }
 }

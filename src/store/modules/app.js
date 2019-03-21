@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie'
-import { get_img } from '@/api/api'
+import { get_img, get_body_detect_img, get_face_detect_img, set_alert } from '@/api/api'
 
 const app = {
   state: {
@@ -9,8 +9,10 @@ const app = {
     },
     device: 'desktop',
     img_url: '',
+    body_detect_img_url: '',
     face_detect_result: '',
-    body_detect_result: ''
+    body_detect_result: '',
+    faces: []
   },
   mutations: {
     TOGGLE_SIDEBAR: state => {
@@ -38,6 +40,12 @@ const app = {
     },
     BODY_DETECT_RESULT: (state, body_detect_result) => {
       state.body_detect_result = body_detect_result
+    },
+    BODY_DETECT_IMG_URL: (state, body_detect_img_url) => {
+      state.body_detect_img_url = body_detect_img_url
+    },
+    FACES: (state, faces) => {
+      state.faces = faces
     }
   },
   actions: {
@@ -58,6 +66,44 @@ const app = {
           commit('IMG_URL', response.data.img_url)
           commit('FACE_DETECT_RESULT', response.data.face_detect_result)
           commit('BODY_DETECT_RESULT', response.data.body_detect_result)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    GetLatestBodyDetectImg({ commit }) {
+      return new Promise((resolve, reject) => {
+        console.log('GetLatestBodyDetectImg')
+        get_body_detect_img().then(response => {
+          console.log(response.data)
+          commit('BODY_DETECT_IMG_URL', response.data.img_url)
+          commit('FACE_DETECT_RESULT', response.data.face_detect_result)
+          commit('BODY_DETECT_RESULT', response.data.body_detect_result)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    GetLatestFaceDetectImg({ commit }) {
+      return new Promise((resolve, reject) => {
+        console.log('GetLatestFaceDetectImg')
+        get_face_detect_img().then(response => {
+          console.log(response.data)
+          commit('IMG_URL', response.data.img_url)
+          commit('FACES', response.data.faces)
+          commit('FACE_DETECT_RESULT', response.data.face_detect_result)
+          commit('BODY_DETECT_RESULT', response.data.body_detect_result)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    SetAlert({ commit }, form) {
+      console.log(form)
+      return new Promise((resolve, reject) => {
+        console.log('SetAlert')
+        set_alert(form.delivery, form.name).then(response => {
+          console.log(response.data)
         }).catch(error => {
           reject(error)
         })
