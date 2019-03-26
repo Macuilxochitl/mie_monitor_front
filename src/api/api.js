@@ -33,3 +33,17 @@ export function set_alert(enable, num) {
     }
   })
 }
+
+export function get_mon_data() {
+  return request({
+    url: '/mon/data/',
+    method: 'get'
+  })
+}
+
+export function get_setting_data() {
+  return request({
+    url: '/mon/get_alert_setting/',
+    method: 'get'
+  })
+}

@@ -1,7 +1,6 @@
 <template>
   <div class="app-container">
     <el-form ref="form" :model="form" label-width="120px">
-
       <el-form-item label="启用报警">
         <el-switch v-model="form.delivery"/>
       </el-form-item>
@@ -17,6 +16,7 @@
         <el-button type="primary" @click="onSubmit">提交</el-button>
       </el-form-item>
     </el-form>
+    {{ setting_data }}
   </div>
 </template>
 
@@ -35,6 +35,16 @@ export default {
         desc: ''
       }
     }
+  },
+  computed: {
+    setting_data: {
+      get() {
+        return this.$store.state.app.setting_data
+      }
+    }
+  },
+  created() {
+    this.$store.dispatch('GetSetting')
   },
   methods: {
     onSubmit() {

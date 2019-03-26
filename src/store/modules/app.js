@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie'
-import { get_img, get_body_detect_img, get_face_detect_img, set_alert } from '@/api/api'
+import { get_img, get_body_detect_img, get_face_detect_img, set_alert, get_mon_data, get_setting_data } from '@/api/api'
 
 const app = {
   state: {
@@ -12,7 +12,9 @@ const app = {
     body_detect_img_url: '',
     face_detect_result: '',
     body_detect_result: '',
-    faces: []
+    faces: [],
+    mon_data: '',
+    setting_data: ''
   },
   mutations: {
     TOGGLE_SIDEBAR: state => {
@@ -46,7 +48,13 @@ const app = {
     },
     FACES: (state, faces) => {
       state.faces = faces
-    }
+    },
+    MON_DATA: (state, data) => {
+      state.mon_data = data
+    },
+    SETTING_DATA: (state, data) => {
+      state.setting_data = data
+    },
   },
   actions: {
     ToggleSideBar: ({ commit }) => {
@@ -104,6 +112,28 @@ const app = {
         console.log('SetAlert')
         set_alert(form.delivery, form.name).then(response => {
           console.log(response.data)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    GetMonData({ commit }) {
+      return new Promise((resolve, reject) => {
+        console.log('GetMonData')
+        get_mon_data().then(response => {
+          console.log(response.data)
+          commit('MON_DATA', response.data.mon_data)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    GetSetting({ commit }) {
+      return new Promise((resolve, reject) => {
+        console.log('GetSetting')
+        get_setting_data().then(response => {
+          console.log(response.data)
+          commit('SETTING_DATA', response.data)
         }).catch(error => {
           reject(error)
         })
