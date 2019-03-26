@@ -46,7 +46,7 @@ export const constantRouterMap = [
         path: 'index',
         name: 'Monitoring',
         component: () => import('@/views/monitoring/index'),
-        meta: { title: '实时', icon: 'form' }
+        meta: { title: '实时监控', icon: 'form' }
       }
     ]
   },

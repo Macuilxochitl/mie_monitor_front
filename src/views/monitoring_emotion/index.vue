@@ -3,6 +3,8 @@
     <el-row>
       <el-col :offset="3" :span="18"><img style="max-width:100%;" :src="img_url"></el-col>
     </el-row>
+    <h1 v-if="faces.length">识别结果：</h1>
+    <h1 v-else>暂未识别到人脸！</h1>
     <el-col v-for="face in faces" :span="8" :key="face.id">
       <img :src="face.face_img_url" height="100" width="100">
       情绪：{{ face.attributes.emotion }}
