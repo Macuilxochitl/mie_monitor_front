@@ -58,7 +58,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       template: 'index.html',
       inject: true,
       favicon: resolve('favicon.ico'),
-      title: '人体检测智能系统'
+      title: '人体检测跟踪系统'
     })
   ]
 })

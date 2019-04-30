@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">欢迎使用人体检测智能系统！</div>
+    <div class="dashboard-text">欢迎使用人体检测跟踪系统！</div>
   </div>
 </template>
 
